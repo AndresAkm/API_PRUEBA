@@ -3,6 +3,8 @@ import express from "express";
 import { configDotenv } from "dotenv";
 import apiRouter from "./routes/api.routes.js";
 import webRouter from "./routes/web.routes.js";
+import methodOverride from "method-override";
+import morgan from "morgan";
 
 configDotenv()
 
@@ -11,8 +13,11 @@ const PORT = process.env.PORT
 
 app.set("view engine", "ejs");
 
+app.use(morgan("dev"))
+app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 app.use("/api/v1", apiRouter);
 app.use("/", webRouter);

@@ -1,0 +1,77 @@
+<!-- Modal Ver -->
+<div class="modal fade" id="verModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Detalles del Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>ID:</strong> <span id="ver-id"></span></p>
+        <p><strong>Nombre:</strong> <span id="ver-nombre"></span></p>
+        <p><strong>Email:</strong> <span id="ver-email"></span></p>
+        <p><strong>Teléfono:</strong> <span id="ver-telefono"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editarModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="editarForm" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="id" id="editar-id">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="editar-nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="editar-nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="editar-email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="editar-email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="editar-telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="editar-telefono" name="telefono">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Borrar -->
+<div class="modal fade" id="borrarModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="borrarForm" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <div class="modal-body">
+          <p>¿Estás seguro de que deseas eliminar a <strong id="borrar-nombre"></strong>?</p>
+          <input type="hidden" id="borrar-id" name="id">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

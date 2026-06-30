@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { renderClientes } from "../controller/cliente.view.controller.js";
+import { renderClientes, editarCliente, eliminarCliente } from "../controller/cliente.view.controller.js";
 import { renderProductos } from "../controller/producto.view.controller.js";
 import { renderServicios } from "../controller/servicio.view.controller.js";
 
@@ -10,6 +10,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/clientes", renderClientes);
+router.put("/clientes/:_id", editarCliente);
+router.delete("/clientes/:_id", eliminarCliente);
+
 router.get("/productos", renderProductos);
 router.get("/servicios", renderServicios);
 

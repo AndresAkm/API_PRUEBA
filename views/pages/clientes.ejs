@@ -14,22 +14,26 @@
       <div class="alert alert-info">No hay clientes registrados.</div>
     <% } else { %>
       <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <table id="clientesTable" class="table table-striped table-hover">
           <thead class="table-dark">
             <tr>
-              <th>ID</th>
               <th>Nombre</th>
               <th>Email</th>
               <th>Teléfono</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <% clientes.forEach(function(c) { %>
+            <% clientes.forEach(function(cliente) { %>
               <tr>
-                <td><%= c._id %></td>
-                <td><%= c.nombre %></td>
-                <td><%= c.email %></td>
-                <td><%= c.telefono || '-' %></td>
+                <td><%= cliente.nombre %></td>
+                <td><%= cliente.email %></td>
+                <td><%= cliente.telefono || '-' %></td>
+                <td>
+                  <button class="btn btn-sm btn-primary" data-action="ver" data-id="<%= cliente._id %>">Ver</button>
+                  <button class="btn btn-sm btn-secondary" data-action="editar" data-id="<%= cliente._id %>">Editar</button>
+                  <button class="btn btn-sm btn-danger" data-action="borrar" data-id="<%= cliente._id %>" data-nombre="<%= cliente.nombre %>">Borrar</button>
+                </td>
               </tr>
             <% }) %>
           </tbody>
@@ -38,7 +42,24 @@
     <% } %>
   </main>
 
+  <%- include('../partials/modales-clientes') %>
   <%- include('../partials/footer') %>
+  
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+  <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/clientes.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      new DataTable('#clientesTable', {
+        pagingType: 'simple_numbers',
+        language: {
+          url: 'https://cdn.datatables.net/plug-ins/2.2.2/i18n/es-ES.json',
+        }
+
+      });
+    });
+  </script>
 </body>
 </html>

@@ -17,7 +17,14 @@ app.use(morgan("dev"))
 app.use(express.static("public"))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(methodOverride('_method'))
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    return req.body._method;
+  }
+  if (req.query && req.query._method) {
+    return req.query._method;
+  }
+}))
 
 app.use("/api/v1", apiRouter);
 app.use("/", webRouter);
